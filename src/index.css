@@ -7,6 +7,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --primary: #ff0000;
+  --black: #020203;
+  --darkgrey: #282d30;
+  --lightgrey: #fbfbfb;
+  --textgrey: #74798c;
 }
 
 *,

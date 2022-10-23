@@ -80,3 +80,4 @@ If you are working with several versions of NodeJS, we recommend you install [nv
 - Clone it on your computer.
 - The `yarn` command will allow you to install the dependencies.
 - The `yarn dev` command will allow you to run the react front-end project.
+- The project works by default on port 5173.

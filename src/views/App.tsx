@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import styles from "./App.module.scss";
 
+/** Layout Component with routes rendered through Outlet Component */
 const App: React.FunctionComponent = () => {
   return (
     <div className={styles.layout}>

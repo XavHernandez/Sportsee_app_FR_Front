@@ -1,22 +1,34 @@
 import type { isUser } from "../entities/User";
 import type { isCardInfo } from "../entities/CardInfo";
-import type { isBarChartData } from "../entities/BarChartData";
+import type { isActivityData } from "../entities/ActivityData";
+import type { isSessionsData } from "../entities/SessionsData";
+import type { isPerformanceData } from "../entities/PerformanceData";
+import type { isScoreData } from "../entities/ScoreData";
 import React, { useState, useEffect } from "react";
-import { DataFormatter } from "../services/dataFormatter";
+import { fakeDataFormatter } from "../services/fakeDataFormatter";
 import CardInfo from "../components/CardInfo";
 import ActivityChart from "../components/ActivityChart";
+import SessionsChart from "../components/SessionsChart";
+import PerformanceChart from "../components/PerformanceChart";
+import ScoreChart from "../components/ScoreChart";
 import styles from "./Profile.module.scss";
 
 const Profile: React.FunctionComponent = () => {
   const [user, setUser] = useState<isUser>();
   const [infos, setInfos] = useState<isCardInfo[]>();
-  const [barChartData, setBarChartData] = useState<isBarChartData[]>();
+  const [activityData, setActivityData] = useState<isActivityData[]>();
+  const [sessionsData, setSessionsData] = useState<isSessionsData[]>();
+  const [performanceData, setPerformanceData] = useState<isPerformanceData[]>();
+  const [scoreData, setScoreData] = useState<isScoreData[]>();
 
   useEffect(() => {
-    const dataFormatter = new DataFormatter();
+    const dataFormatter = new fakeDataFormatter();
     setUser(dataFormatter.getFormattedUserData());
     setInfos(dataFormatter.getFormattedCardsInfos());
-    setBarChartData(dataFormatter.getFormattedBarChartData());
+    setActivityData(dataFormatter.getFormattedActivityData());
+    setSessionsData(dataFormatter.getFormattedSessionsData());
+    setPerformanceData(dataFormatter.getFormattedPerformanceData());
+    setScoreData(dataFormatter.getFormattedScoreData());
   }, []);
 
   return (
@@ -29,14 +41,22 @@ const Profile: React.FunctionComponent = () => {
       </section>
       <section className={styles.data}>
         <div className={styles.data_graphs}>
-          {barChartData && <ActivityChart data={barChartData} />}
-          <div className={styles.multicharts}></div>
+          {activityData && <ActivityChart data={activityData} />}
+          <div className={styles.multicharts}>
+            <div className={styles.sessions}>
+              {sessionsData && <SessionsChart data={sessionsData} />}
+            </div>
+            <div className={styles.performances}>
+              {performanceData && <PerformanceChart data={performanceData} />}
+            </div>
+            <div className={styles.scores}>{scoreData && <ScoreChart data={scoreData} />}</div>
+          </div>
         </div>
-        <div className={styles.data_cards}>
+        <aside className={styles.data_cards}>
           {infos?.map((info) => {
             return <CardInfo quantity={info.quantity} type={info.type} />;
           })}
-        </div>
+        </aside>
       </section>
     </React.Fragment>
   );

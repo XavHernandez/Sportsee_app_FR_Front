@@ -37,9 +37,39 @@
     width: 76%;
 
     .multicharts {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 258px), 1fr));
+      gap: 1rem;
+      width: 100%;
+      padding-top: 1.5rem;
+      padding-bottom: 3rem;
+
+      .sessions,
+      .performances,
+      .scores {
+        display: flex;
+        justify-content: center;
+        width: 258px;
+        height: 263px;
+        border-radius: 5px;
+      }
+
+      .sessions {
+        background-color: var(--primary);
+      }
+
+      .performances {
+        background-color: var(--darkgrey);
+        justify-self: center;
+      }
+
+      .scores {
+        background-color: var(--lightgrey);
+        justify-self: flex-end;
+        @media screen and (max-width: 1248px) {
+          justify-self: flex-start;
+        }
+      }
     }
   }
 

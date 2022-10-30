@@ -1,4 +1,4 @@
-import type { isBarChartData } from "../entities/BarChartData";
+import type { isActivityData } from "../entities/ActivityData";
 import React from "react";
 import {
   ResponsiveContainer,
@@ -12,10 +12,10 @@ import {
 } from "recharts";
 
 interface BarChartProps {
-  data: isBarChartData[];
+  data: isActivityData[];
 }
 
-/** @params isBarChartData[] as BarChartProps */
+/** @params isActivityData[] as BarChartProps */
 const ActivityChart: React.FunctionComponent<BarChartProps> = (props: BarChartProps) => {
   return (
     <ResponsiveContainer width="100%" height={320}>

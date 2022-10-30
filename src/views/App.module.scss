@@ -101,5 +101,6 @@
   & > .main {
     grid-area: main;
     background-color: white;
+    overflow-y: auto;
   }
 }

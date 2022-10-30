@@ -13,6 +13,11 @@
   --darkgrey: #282d30;
   --lightgrey: #fbfbfb;
   --textgrey: #74798c;
+
+  --calories: rgba(255, 0, 0, 0.15);
+  --proteines: rgba(74, 184, 255, 0.2);
+  --glucides: rgba(249, 206, 35, 0.3);
+  --lipides: rgba(253, 81, 129, 0.25);
 }
 
 *,

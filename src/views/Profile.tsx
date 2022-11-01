@@ -5,7 +5,7 @@ import type { isSessionsData } from "../entities/SessionsData";
 import type { isPerformanceData } from "../entities/PerformanceData";
 import type { isScoreData } from "../entities/ScoreData";
 import React, { useState, useEffect } from "react";
-import { DataFormatter } from "../services/DataFormatter";
+import { DataFormatter } from "../services/dataFormatter";
 import { getUser, getActivity, getSessions, getPerformance } from "../services/api";
 import CardInfo from "../components/CardInfo";
 import ActivityChart from "../components/ActivityChart";
@@ -35,20 +35,18 @@ const Profile: React.FunctionComponent = () => {
       getSessions(userID),
       getPerformance(userID),
     ]).then((data) => {
-      console.log("data", data[3]);
-      console.log(data[3].kind["1"]);
       setUser(dataFormatter.getFormattedUserData(data[0]));
       setInfos(dataFormatter.getFormattedCardsInfos(data[0]));
       setActivityData(dataFormatter.getFormattedActivityData(data[1]));
       setSessionsData(dataFormatter.getFormattedSessionsData(data[2]));
       setScoreData(dataFormatter.getFormattedScoreData(data[0]));
-      dataFormatter.getFormattedPerformanceData(data[3]);
+      setPerformanceData(dataFormatter.getFormattedPerformanceData(data[3]));
     });
     setIsLoading(false);
   };
 
   useEffect(() => {
-    getFormattedDataFromAPI(12);
+    getFormattedDataFromAPI(18);
   }, []);
 
   if (!isLoading) {

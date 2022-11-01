@@ -23,7 +23,7 @@ const PerformanceChart: React.FunctionComponent<RadarChartProps> = (props: Radar
         outerRadius="75%"
         innerRadius={10}
         data={props.data}
-        margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+        margin={{ top: 15, right: 15, bottom: 15, left: 15 }}>
         <PolarGrid radialLines={false} />
 
         <PolarAngleAxis
@@ -33,8 +33,8 @@ const PerformanceChart: React.FunctionComponent<RadarChartProps> = (props: Radar
           tickLine={false}
           axisLine={false}
         />
-        <PolarRadiusAxis axisLine={false} tick={false} scale="auto" domain={[0, 12]} />
-        <Radar name="Mike" dataKey="performance" fill="#FF0101" fillOpacity={0.6} />
+        <PolarRadiusAxis axisLine={false} tick={false} scale="linear" domain={[0, 250]} />
+        <Radar dataKey="performance" fill="#FF0101" fillOpacity={0.6} />
       </RadarChart>
     </ResponsiveContainer>
   );

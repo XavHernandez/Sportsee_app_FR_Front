@@ -49,21 +49,26 @@ export class DataFormatter {
   /** @return isPerformanceData type */
   getFormattedPerformanceData(data: any): isPerformanceData[] {
     const graphData: any = [];
-    // const kind = Object.entries(data.kind);
-    console.log("x", data);
-    // for (let i = 0; i < kind.length; i++) {
-    //   let performance = {
-    //     subject: `${kind[i][1]}`,
-    //     performance: `${data.data[i].value}`,
-    //     fullMark: "200",
-    //   };
-    //   graphData.push(performance);
-    // }
+    const kind = Object.entries(data.kind);
+    for (let i = 0; i < kind.length; i++) {
+      let performance = {
+        subject: `${kind[i][1]}`,
+        performance: data.data[i].value,
+        fullMark: 240,
+      };
+      graphData.push(performance);
+    }
     return graphData as isPerformanceData[];
   }
 
   /** @return isScoreData type */
   getFormattedScoreData(data: any): isScoreData[] {
-    return [{ name: "objectif", score: `${data.todayScore * 100}`, fill: "var(--primary)" }];
+    return [
+      {
+        name: "objectif",
+        score: `${(data.todayScore ?? data.score) * 100}`,
+        fill: "var(--primary)",
+      },
+    ];
   }
 }

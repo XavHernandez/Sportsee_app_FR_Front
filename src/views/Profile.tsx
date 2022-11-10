@@ -24,7 +24,7 @@ const Profile: React.FunctionComponent = () => {
   const [performanceData, setPerformanceData] = useState<isPerformanceData[]>();
   const [scoreData, setScoreData] = useState<isScoreData[]>();
 
-  const dataFormatter = new DataFormatter();
+  const dataFormatter = new DataFormatter(false);
 
   /**
    * @param {number} userID

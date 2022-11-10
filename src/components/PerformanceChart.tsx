@@ -13,7 +13,9 @@ interface RadarChartProps {
   data: isPerformanceData[];
 }
 
-/** @params isPerformanceData[] as RadarChartProps */
+/**
+ * @param { isPerformanceData[] } props RadarChartProps
+ * */
 const PerformanceChart: React.FunctionComponent<RadarChartProps> = (props: RadarChartProps) => {
   return (
     <ResponsiveContainer width="100%" height="100%">

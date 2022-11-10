@@ -6,7 +6,9 @@ interface LineChartProps {
   data: isSessionsData[];
 }
 
-/** @params isSessionsData[] as LineChartProps */
+/**
+ * @param {isSessionsData[]} props
+ * */
 const ActivityChart: React.FunctionComponent<LineChartProps> = (props: LineChartProps) => {
   return (
     <ResponsiveContainer width="100%" height="100%">

@@ -6,12 +6,12 @@ import type { isPerformanceData } from "../entities/PerformanceData";
 import type { isScoreData } from "../entities/ScoreData";
 
 export class DataFormatter {
-  /** @return isUser type */
+  /** @return {isUser} */
   getFormattedUserData(data: any): isUser {
     return { name: data.userInfos.firstName };
   }
 
-  /** @return isCardInfo type */
+  /** @return {isCardInfo} */
   getFormattedCardsInfos(data: any): isCardInfo[] {
     return [
       { quantity: `${data.keyData.calorieCount}kCal`, type: "Calories" },
@@ -21,7 +21,7 @@ export class DataFormatter {
     ];
   }
 
-  /** @return isActivityData type */
+  /** @return {isActivityData} */
   getFormattedActivityData(data: any): isActivityData[] {
     const graphData: any = [];
     data.sessions.forEach((session: any) => {
@@ -34,7 +34,7 @@ export class DataFormatter {
     return graphData as isActivityData[];
   }
 
-  /** @return isSessionsData type */
+  /** @return {isSessionsData} */
   getFormattedSessionsData(data: any): isSessionsData[] {
     const graphData: any = [];
     data.sessions.forEach((session: any) => {
@@ -46,7 +46,7 @@ export class DataFormatter {
     return graphData as isSessionsData[];
   }
 
-  /** @return isPerformanceData type */
+  /** @return {isPerformanceData} */
   getFormattedPerformanceData(data: any): isPerformanceData[] {
     const graphData: any = [];
     const kind = Object.entries(data.kind);
@@ -61,7 +61,7 @@ export class DataFormatter {
     return graphData as isPerformanceData[];
   }
 
-  /** @return isScoreData type */
+  /** @return {isScoreData} */
   getFormattedScoreData(data: any): isScoreData[] {
     return [
       {

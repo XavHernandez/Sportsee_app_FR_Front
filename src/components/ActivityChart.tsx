@@ -15,7 +15,9 @@ interface BarChartProps {
   data: isActivityData[];
 }
 
-/** @params isActivityData[] as BarChartProps */
+/**
+ * @param {isActivityData[]} props
+ * */
 const ActivityChart: React.FunctionComponent<BarChartProps> = (props: BarChartProps) => {
   return (
     <ResponsiveContainer width="100%" height={320}>

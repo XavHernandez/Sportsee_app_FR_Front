@@ -6,11 +6,13 @@ import chicken from "../assets/chicken.svg";
 import apple from "../assets/apple.svg";
 import cheeseburger from "../assets/cheeseburger.svg";
 
-//** @params isCardInfo interface */
+/**
+ * @param {isCardInfo} props
+ * */
 const CardInfo: React.FunctionComponent<isCardInfo> = (props: isCardInfo) => {
   /**
-   * @params string
-   * @return string
+   * @param {string} type
+   * @return {string}
    */
   function getColor(type: string): string {
     let color: string;
@@ -22,8 +24,8 @@ const CardInfo: React.FunctionComponent<isCardInfo> = (props: isCardInfo) => {
   }
 
   /**
-   * @params string
-   * @return string
+   * @param {string} type
+   * @return {string}
    */
   function getSVG(type: string): string {
     let svg;

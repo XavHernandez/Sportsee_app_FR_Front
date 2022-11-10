@@ -6,7 +6,9 @@ interface RadialChartProps {
   data: isScoreData[];
 }
 
-/** @params isScoreData[] as RadialChartProps */
+/**
+ * @param {isScoreData[]} props
+ * */
 const ScoreChart: React.FunctionComponent<RadialChartProps> = (props: RadialChartProps) => {
   return (
     <ResponsiveContainer width="100%" height="100%">

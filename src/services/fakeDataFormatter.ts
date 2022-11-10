@@ -6,12 +6,12 @@ import type { isPerformanceData } from "../entities/PerformanceData";
 import type { isScoreData } from "../entities/ScoreData";
 
 export class fakeDataFormatter {
-  /** @return isUser type */
+  /** @return {isUser} */
   getFormattedUserData(): isUser {
     return { name: "Thomas" };
   }
 
-  /** @return isCardInfo type */
+  /** @return {isCardInfo} */
   getFormattedCardsInfos(): isCardInfo[] {
     return [
       { quantity: "1,930kCal", type: "Calories" },
@@ -21,7 +21,7 @@ export class fakeDataFormatter {
     ];
   }
 
-  /** @return isActivityData type */
+  /** @return {isActivityData} */
   getFormattedActivityData(): isActivityData[] {
     return [
       { name: "1", weight: "69", calories: "170" },
@@ -37,7 +37,7 @@ export class fakeDataFormatter {
     ];
   }
 
-  /** @return isSessionsData type */
+  /** @return {isSessionsData} */
   getFormattedSessionsData(): isSessionsData[] {
     return [
       { name: "L", session: "10" },
@@ -50,7 +50,7 @@ export class fakeDataFormatter {
     ];
   }
 
-  /** @return isPerformanceData type */
+  /** @return {isPerformanceData} */
   getFormattedPerformanceData(): isPerformanceData[] {
     return [
       { subject: "Intensité", performance: "10", fullMark: "15" },
@@ -62,7 +62,7 @@ export class fakeDataFormatter {
     ];
   }
 
-  /** @return isScoreData type */
+  /** @return {isScoreData} */
   getFormattedScoreData(): isScoreData[] {
     return [{ name: "objectif", score: "12", fill: "var(--primary)" }];
   }

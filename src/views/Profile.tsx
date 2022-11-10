@@ -25,8 +25,8 @@ const Profile: React.FunctionComponent = () => {
 
   const dataFormatter = new DataFormatter();
 
-  /** @params userID as number
-   * @returns data from API
+  /**
+   * @param {number} userID
    */
   const getFormattedDataFromAPI = async (userID: number) => {
     Promise.all([

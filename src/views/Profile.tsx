@@ -16,6 +16,7 @@ import styles from "./Profile.module.scss";
 
 const Profile: React.FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<string>("");
   const [user, setUser] = useState<isUser>();
   const [infos, setInfos] = useState<isCardInfo[]>();
   const [activityData, setActivityData] = useState<isActivityData[]>();
@@ -29,27 +30,26 @@ const Profile: React.FunctionComponent = () => {
    * @param {number} userID
    */
   const getFormattedDataFromAPI = async (userID: number) => {
-    Promise.all([
-      getUser(userID),
-      getActivity(userID),
-      getSessions(userID),
-      getPerformance(userID),
-    ]).then((data) => {
-      setUser(dataFormatter.getFormattedUserData(data[0]));
-      setInfos(dataFormatter.getFormattedCardsInfos(data[0]));
-      setActivityData(dataFormatter.getFormattedActivityData(data[1]));
-      setSessionsData(dataFormatter.getFormattedSessionsData(data[2]));
-      setScoreData(dataFormatter.getFormattedScoreData(data[0]));
-      setPerformanceData(dataFormatter.getFormattedPerformanceData(data[3]));
-    });
+    Promise.all([getUser(userID), getActivity(userID), getSessions(userID), getPerformance(userID)])
+      .then((data) => {
+        setUser(dataFormatter.getFormattedUserData(data[0]));
+        setInfos(dataFormatter.getFormattedCardsInfos(data[0]));
+        setActivityData(dataFormatter.getFormattedActivityData(data[1]));
+        setSessionsData(dataFormatter.getFormattedSessionsData(data[2]));
+        setScoreData(dataFormatter.getFormattedScoreData(data[0]));
+        setPerformanceData(dataFormatter.getFormattedPerformanceData(data[3]));
+      })
+      .catch((err) => {
+        setIsError(err.message);
+      });
     setIsLoading(false);
   };
 
   useEffect(() => {
-    getFormattedDataFromAPI(18);
+    getFormattedDataFromAPI(12);
   }, []);
 
-  if (!isLoading) {
+  if (!isLoading && !isError) {
     return (
       <React.Fragment>
         <section className={styles.user}>
@@ -81,11 +81,18 @@ const Profile: React.FunctionComponent = () => {
         </section>
       </React.Fragment>
     );
-  } else {
+  } else if (isLoading) {
     return (
       <section className={styles.user}>
         <h2 className={styles.user_greeting}>Bonjour,</h2>
         <p className={styles.user_status}>Veuillez patienter ! Nous chargons vos informations...</p>
+      </section>
+    );
+  } else {
+    return (
+      <section className={styles.user}>
+        <h2 className={styles.user_greeting}>Attention,</h2>
+        <p className={styles.user_status}>{isError}</p>
       </section>
     );
   }

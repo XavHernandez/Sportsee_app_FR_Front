@@ -1,5 +1,5 @@
-import type { isActivityData } from "../entities/ActivityData";
 import React from "react";
+import PropTypes from "prop-types";
 import {
   ResponsiveContainer,
   BarChart,
@@ -11,17 +11,15 @@ import {
   Bar,
 } from "recharts";
 
-interface BarChartProps {
-  data: isActivityData[];
-}
-
 /**
- * @param {isActivityData[]} props
+ * @param {any[]} data
  * */
-const ActivityChart: React.FunctionComponent<BarChartProps> = (props: BarChartProps) => {
+
+//@ts-ignore
+const ActivityChart = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height={320}>
-      <BarChart data={props.data} barSize={7}>
+      <BarChart data={data} barSize={7}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis dataKey="name" padding={{ left: 10 }} />
         <YAxis orientation={"right"} axisLine={false} />
@@ -38,6 +36,16 @@ const ActivityChart: React.FunctionComponent<BarChartProps> = (props: BarChartPr
       </BarChart>
     </ResponsiveContainer>
   );
+};
+
+ActivityChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      weight: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default ActivityChart;

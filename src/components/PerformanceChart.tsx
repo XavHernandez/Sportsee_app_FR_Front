@@ -1,5 +1,5 @@
-import type { isPerformanceData } from "../entities/PerformanceData";
 import React from "react";
+import PropTypes from "prop-types";
 import {
   ResponsiveContainer,
   RadarChart,
@@ -9,14 +9,11 @@ import {
   Radar,
 } from "recharts";
 
-interface RadarChartProps {
-  data: isPerformanceData[];
-}
-
 /**
- * @param { isPerformanceData[] } props RadarChartProps
+ * @param { any[] } data
  * */
-const PerformanceChart: React.FunctionComponent<RadarChartProps> = (props: RadarChartProps) => {
+//@ts-ignore
+const PerformanceChart = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart
@@ -24,7 +21,7 @@ const PerformanceChart: React.FunctionComponent<RadarChartProps> = (props: Radar
         cy="50%"
         outerRadius="75%"
         innerRadius={10}
-        data={props.data}
+        data={data}
         margin={{ top: 15, right: 15, bottom: 15, left: 15 }}>
         <PolarGrid radialLines={false} />
 
@@ -40,6 +37,16 @@ const PerformanceChart: React.FunctionComponent<RadarChartProps> = (props: Radar
       </RadarChart>
     </ResponsiveContainer>
   );
+};
+
+PerformanceChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      subject: PropTypes.string.isRequired,
+      performance: PropTypes.number.isRequired,
+      fullMark: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 export default PerformanceChart;

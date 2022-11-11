@@ -1,21 +1,18 @@
-import type { isSessionsData } from "../entities/SessionsData";
 import React from "react";
+import PropTypes from "prop-types";
 import { ResponsiveContainer, LineChart, XAxis, Line } from "recharts";
 
-interface LineChartProps {
-  data: isSessionsData[];
-}
-
 /**
- * @param {isSessionsData[]} props
+ * @param {any[]} props
  * */
-const ActivityChart: React.FunctionComponent<LineChartProps> = (props: LineChartProps) => {
+//@ts-ignore
+const SessionsChart = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
         width={300}
         height={100}
-        data={props.data}
+        data={data}
         margin={{
           top: 80,
           right: 20,
@@ -63,4 +60,13 @@ const ActivityChart: React.FunctionComponent<LineChartProps> = (props: LineChart
   );
 };
 
-export default ActivityChart;
+SessionsChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      session: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+export default SessionsChart;

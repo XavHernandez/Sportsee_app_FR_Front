@@ -1,9 +1,4 @@
 import type { isUser } from "../entities/User";
-import type { isCardInfo } from "../entities/CardInfo";
-import type { isActivityData } from "../entities/ActivityData";
-import type { isSessionsData } from "../entities/SessionsData";
-import type { isPerformanceData } from "../entities/PerformanceData";
-import type { isScoreData } from "../entities/ScoreData";
 
 export class DataFormatter {
   useMockData: boolean;
@@ -19,7 +14,7 @@ export class DataFormatter {
   }
 
   /** @return {isCardInfo} */
-  getFormattedCardsInfos(data?: any): isCardInfo[] {
+  getFormattedCardsInfos(data?: any): any[] {
     if (this.useMockData) {
       return [
         { quantity: "1,930kCal", type: "Calories" },
@@ -37,7 +32,7 @@ export class DataFormatter {
   }
 
   /** @return {isActivityData} */
-  getFormattedActivityData(data?: any): isActivityData[] {
+  getFormattedActivityData(data?: any): any[] {
     if (this.useMockData) {
       return [
         { name: "1", weight: "69", calories: "170" },
@@ -60,11 +55,11 @@ export class DataFormatter {
         calories: `${session.calories}`,
       });
     });
-    return graphData as isActivityData[];
+    return graphData as any[];
   }
 
   /** @return {isSessionsData} */
-  getFormattedSessionsData(data?: any): isSessionsData[] {
+  getFormattedSessionsData(data?: any): any[] {
     if (this.useMockData) {
       return [
         { name: "L", session: "10" },
@@ -83,11 +78,11 @@ export class DataFormatter {
         session: `${session.sessionLength}`,
       });
     });
-    return graphData as isSessionsData[];
+    return graphData as any[];
   }
 
   /** @return {isPerformanceData} */
-  getFormattedPerformanceData(data?: any): isPerformanceData[] {
+  getFormattedPerformanceData(data?: any): any[] {
     if (this.useMockData) {
       return [
         { subject: "Intensité", performance: 10, fullMark: 15 },
@@ -108,11 +103,11 @@ export class DataFormatter {
       };
       graphData.push(performance);
     }
-    return graphData as isPerformanceData[];
+    return graphData as any[];
   }
 
   /** @return {isScoreData} */
-  getFormattedScoreData(data?: any): isScoreData[] {
+  getFormattedScoreData(data?: any): any[] {
     if (this.useMockData) {
       return [{ name: "objectif", score: "12", fill: "var(--primary)" }];
     }

@@ -1,5 +1,5 @@
-import type { isCardInfo } from "../entities/CardInfo";
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./CardInfo.module.scss";
 import energy from "../assets/energy.svg";
 import chicken from "../assets/chicken.svg";
@@ -7,9 +7,11 @@ import apple from "../assets/apple.svg";
 import cheeseburger from "../assets/cheeseburger.svg";
 
 /**
- * @param {isCardInfo} props
+ * @param {string} quantity
+ * @param {string} type
  * */
-const CardInfo: React.FunctionComponent<isCardInfo> = (props: isCardInfo) => {
+//@ts-ignore
+const CardInfo = ({ quantity, type }) => {
   /**
    * @param {string} type
    * @return {string}
@@ -38,15 +40,20 @@ const CardInfo: React.FunctionComponent<isCardInfo> = (props: isCardInfo) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.card_picture} style={{ backgroundColor: getColor(props.type) }}>
-        <img src={getSVG(props.type)} alt={props.type} />
+      <div className={styles.card_picture} style={{ backgroundColor: getColor(type) }}>
+        <img src={getSVG(type)} alt={type} />
       </div>
       <div className={styles.card_content}>
-        <p className={styles.quantity}>{props.quantity}</p>
-        <p className={styles.molecule}>{props.type}</p>
+        <p className={styles.quantity}>{quantity}</p>
+        <p className={styles.molecule}>{type}</p>
       </div>
     </div>
   );
+};
+
+CardInfo.propTypes = {
+  quantity: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default CardInfo;

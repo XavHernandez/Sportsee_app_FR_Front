@@ -1,21 +1,18 @@
-import type { isScoreData } from "../entities/ScoreData";
 import React from "react";
+import PropTypes from "prop-types";
 import { ResponsiveContainer, RadialBarChart, PolarAngleAxis, RadialBar } from "recharts";
 
-interface RadialChartProps {
-  data: isScoreData[];
-}
-
 /**
- * @param {isScoreData[]} props
+ * @param {any[]} data
  * */
-const ScoreChart: React.FunctionComponent<RadialChartProps> = (props: RadialChartProps) => {
+//@ts-ignore
+const ScoreChart = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadialBarChart
         width={300}
         height={300}
-        data={props.data}
+        data={data}
         innerRadius="70%"
         barSize={10}
         startAngle={180}
@@ -33,7 +30,7 @@ const ScoreChart: React.FunctionComponent<RadialChartProps> = (props: RadialChar
         </text>
         <text textAnchor="middle" dominantBaseline="middle" fontSize="1em">
           <tspan x="50%" y="35%" dy="0.71em" fontSize="1.2em" className="progress-label-number">
-            {props.data[0].score}%
+            {data[0].score}%
           </tspan>
           <tspan x="50%" y="50%" dy="0.5em" fontSize="0.7em" className="progress-label-text">
             de votre
@@ -45,6 +42,16 @@ const ScoreChart: React.FunctionComponent<RadialChartProps> = (props: RadialChar
       </RadialBarChart>
     </ResponsiveContainer>
   );
+};
+
+ScoreChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      score: PropTypes.string.isRequired,
+      fill: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default ScoreChart;

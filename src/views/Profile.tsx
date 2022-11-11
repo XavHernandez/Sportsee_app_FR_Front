@@ -1,9 +1,4 @@
 import type { isUser } from "../entities/User";
-import type { isCardInfo } from "../entities/CardInfo";
-import type { isActivityData } from "../entities/ActivityData";
-import type { isSessionsData } from "../entities/SessionsData";
-import type { isPerformanceData } from "../entities/PerformanceData";
-import type { isScoreData } from "../entities/ScoreData";
 import React, { useState, useEffect } from "react";
 import { DataFormatter } from "../services/dataFormatter";
 import { getUser, getActivity, getSessions, getPerformance } from "../services/api";
@@ -18,11 +13,11 @@ const Profile: React.FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<string>("");
   const [user, setUser] = useState<isUser>();
-  const [infos, setInfos] = useState<isCardInfo[]>();
-  const [activityData, setActivityData] = useState<isActivityData[]>();
-  const [sessionsData, setSessionsData] = useState<isSessionsData[]>();
-  const [performanceData, setPerformanceData] = useState<isPerformanceData[]>();
-  const [scoreData, setScoreData] = useState<isScoreData[]>();
+  const [infos, setInfos] = useState<any[]>();
+  const [activityData, setActivityData] = useState<any[]>();
+  const [sessionsData, setSessionsData] = useState<any[]>();
+  const [performanceData, setPerformanceData] = useState<any[]>();
+  const [scoreData, setScoreData] = useState<any[]>();
 
   const dataFormatter = new DataFormatter(false);
 
@@ -46,7 +41,7 @@ const Profile: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    getFormattedDataFromAPI(12);
+    getFormattedDataFromAPI(18);
   }, []);
 
   if (!isLoading && !isError) {
